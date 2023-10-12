@@ -1,0 +1,312 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="utf-8" />
+          <meta
+               http-equiv="X-UA-Compatible"
+               content="IE=edge" />
+          <meta
+               name="viewport"
+               content="width=device-width,initial-scale=1" />
+          <title>SNS Student Managment System</title>
+          <!-- Favicon icon -->
+          <link
+               rel="icon"
+               type="image/png"
+               sizes="16x16"
+               href="images/favicon.png" />
+          <link
+               rel="stylesheet"
+               href="vendor/jqvmap/css/jqvmap.min.css" />
+          <link
+               rel="stylesheet"
+               href="vendor/chartist/css/chartist.min.css" />
+          <link
+               rel="stylesheet"
+               href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css" />
+          <link
+               rel="stylesheet"
+               href="css/style.css" />
+          <link
+               rel="stylesheet"
+               href="css/skin-2.css" />
+          <link
+               href="vendor/fullcalendar/css/fullcalendar.min.css"
+               rel="stylesheet" />
+     </head>
+
+     <body>
+          <!--*******************
+        Preloader start
+    ********************-->
+          <div id="preloader">
+               <div class="sk-three-bounce">
+                    <div class="sk-child sk-bounce1"></div>
+                    <div class="sk-child sk-bounce2"></div>
+                    <div class="sk-child sk-bounce3"></div>
+               </div>
+          </div>
+          <!--*******************
+        Preloader end
+    ********************-->
+
+          <!--**********************************
+        Main wrapper start
+    ***********************************-->
+          <div id="main-wrapper">
+               <!--**********************************
+            Nav header start
+        ***********************************-->
+               <%-include('./partials/__top-bar')%>
+               <!--**********************************
+            Nav header end
+        ***********************************-->
+
+               <!--**********************************
+            Header start
+        ***********************************-->
+
+               <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+               <!--**********************************
+            Sidebar start
+        ***********************************-->
+               <%-include('./partials/__student-side-bar')%>
+               <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+               <!--**********************************
+            Content body start
+        ***********************************-->
+
+               <div class="content-body">
+                    <div class="container-fluid">
+                         <!-- <div class="row page-titles mx-0">
+                              <div class="col-sm-6 p-md-0">
+                                   <div class="welcome-text">
+                                        <h4>Hi, welcome back!</h4>
+                                        <p class="mb-0">Explore your recent tasks and goals</p>
+                                   </div>
+                              </div>
+                         </div> -->
+                         <!-- row -->
+
+                         <div class="row">
+                              <div class="col-lg-12">
+                                   <div class="profile">
+                                        <div class="profile-head">
+                                             <div class="photo-content">
+                                                  <div class="cover-photo"></div>
+                                             </div>
+                                             <div class="profile-info">
+                                                  <div class="row">
+                                                       <div class="col-sm-3">
+                                                            <div class="profile-photo">
+                                                                 <img
+                                                                      src="images/profile/profile.jpg"
+                                                                      class="img-fluid rounded-circle"
+                                                                      alt="" />
+                                                            </div>
+                                                       </div>
+                                                       <div class="col-sm-9 col-12">
+                                                            <div class="row">
+                                                                 <div class="col-xl-4 col-sm-6 border-right-1">
+                                                                      <div class="profile-name">
+                                                                           <h4 class="text-primary mb-0"><%= data.first_name + " "+ data.second_name%></h4>
+                                                                           <p><%= data.reg_id.toUpperCase() %></p>
+                                                                      </div>
+                                                                 </div>
+                                                                 <div class="col-xl-4 col-sm-6 border-right-1">
+                                                                      <div class="profile-email">
+                                                                           <p>Email</p>
+                                                                           <h4 class="text-muted mb-0"><%= data.email%></h4>
+                                                                      </div>
+                                                                 </div>
+                                                                 <div class="col-xl-4 col-sm-4 prf-col">
+                                                    <div class="profile-call">
+                                                        <h4 class="text-muted">10</h4>
+                                                        <p>Reward Points</p>
+                                                    </div>
+                                                </div> 
+                                                            </div>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- row -->
+                    <div class="container-fluid">
+                         <div class="row">
+                              <div class="col-xl-6 col-xxl-6 col-lg-6 col-md-12 col-sm-12">
+                                   <div class="card">
+                                        <div class="card-header">
+                                             <h5 class="card-title">Monthly Tasks</h5>
+                                        </div>
+                                        <div class="card-body">
+                                             <div class="table-responsive">
+                                                  <table class="table header-border table-hover verticle-middle">
+                                                       <thead>
+                                                            <tr>
+                                                                 <th scope="col">#</th>
+                                                                 <th scope="col">Task</th>
+                                                                 <!-- <th scope="col">Pillar type</th> -->
+                                                                 <th scope="col">Status</th>
+                                                            </tr>
+                                                       </thead>
+                                                       <tbody>
+                                                            <% var count = 1 %> <% for (var x in data.task){%>
+                                                                  <% if(x == "startDate" || x == "lastDate"){ continue; } %>
+                                                            <tr>
+                                                                 <th><%= count%></th>
+                                                                 <td><%=  data.task[x].task_name %></td>
+                                                                 <td><span class="badge badge-rounded badge-primary"><%= data.task[x] ? "Done" : "Pending"%></span></td>
+                                                            </tr>
+                                                            <% count++%> <%}%>
+                                                       </tbody>
+                                                  </table>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="col-xl-6 col-xxl-4 col-lg-6">
+                                   <div class="card">
+                                        <div class="card-body">
+                                             <h4 class="card-title">Goals Status</h4>
+                                             <div class="row">
+                                                  <div class="col-12">
+                                                       <div class="d-flex justify-content-between">
+                                                            <span>Node js</span>
+                                                            <h6>67%</h6>
+                                                       </div>
+                                                       <div class="progress">
+                                                            <div
+                                                                 class="progress-bar bg-primary"
+                                                                 style="width: 80%"></div>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-12 mt-4">
+                                                       <div class="d-flex justify-content-between">
+                                                            <span>Learning React</span>
+                                                            <h6>67%</h6>
+                                                       </div>
+                                                       <div class="progress">
+                                                            <div
+                                                                 class="progress-bar bg-success"
+                                                                 style="width: 70%"></div>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-12 mt-4">
+                                                       <div class="d-flex justify-content-between">
+                                                            <span>Final year project</span>
+                                                            <h6>67%</h6>
+                                                       </div>
+                                                       <div class="progress">
+                                                            <div
+                                                                 class="progress-bar bg-info"
+                                                                 style="width: 40%"></div>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-12 mt-4">
+                                                       <div class="d-flex justify-content-between">
+                                                            <span>DSA Learning</span>
+                                                            <h6>67%</h6>
+                                                       </div>
+                                                       <div class="progress">
+                                                            <div
+                                                                 class="progress-bar bg-warning"
+                                                                 style="width: 80%"></div>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="col-xl-6 col-xxl-6 col-sm-6">
+                                   <div class="card">
+                                        <div class="card-header">
+                                             <h3 class="card-title">Academics Report</h3>
+                                        </div>
+                                        <div class="card-body">
+                                             <canvas id="barChart_2"></canvas>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="col-xl-6 col-xxl-6 col-sm-6">
+                                   <div class="card">
+                                        <div class="card-header">
+                                             <h3 class="card-title">Attendance Report</h3>
+                                        </div>
+                                        <div class="card-body">
+                                             <div
+                                                  id="calendar"
+                                                  class="app-fullcalendar"></div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               <!--**********************************
+            Content body end
+        ***********************************-->
+
+               <!--**********************************
+            Footer start
+        ***********************************-->
+               <%-include('./partials/__footer')%>
+               <!--**********************************
+            Footer end
+        ***********************************-->
+
+               <!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+               <!--**********************************
+           Support ticket button end
+        ***********************************-->
+          </div>
+          <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+          <!--**********************************
+        Scripts
+    ***********************************-->
+          <!-- Required vendors -->
+          <script src="vendor/global/global.min.js"></script>
+          <script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+          <script src="js/custom.min.js"></script>
+          <script src="js/dlabnav-init.js"></script>
+
+          <!-- Chart ChartJS plugin files -->
+          <script src="vendor/chart.js/Chart.bundle.min.js"></script>
+
+          <!-- Chart piety plugin files -->
+          <script src="vendor/peity/jquery.peity.min.js"></script>
+
+          <!-- Chart sparkline plugin files -->
+          <script src="vendor/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+          <!-- Demo scripts -->
+          <script src="js/dashboard/dashboard-3.js"></script>
+          <script src="vendor/jqueryui/js/jquery-ui.min.js"></script>
+          <script src="vendor/moment/moment.min.js"></script>
+
+          <script src="vendor/fullcalendar/js/fullcalendar.min.js"></script>
+          <script src="js/plugins-init/fullcalendar-init.js"></script>
+          <!-- Svganimation scripts -->
+          <script src="vendor/svganimation/vivus.min.js"></script>
+          <script src="vendor/svganimation/svg.animation.js"></script>
+          <script src="js/styleSwitcher.js"></script>
+     </body>
+</html>

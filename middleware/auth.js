@@ -1,13 +1,12 @@
 /** @format */
 
 const jwt = require("jsonwebtoken");
-// const fb = require("../config/fb.js");
-// const db = fb.firestore();
+const fb = require("../config/fb.js");
+const db = fb.firestore();
 var cookie = require("cookie");
 
 exports.login = async (req, res, next) => {
      try {
-          console.log(req.body);
           const { user_name, password, type } = req.body;
           if (type == "student") {
                const response = await db.collection("students").where("email", "==", user_name).where("reg_id", "==", password).get();
@@ -17,7 +16,7 @@ exports.login = async (req, res, next) => {
                });
                console.log(result);
                if (result.length == 0) {
-                    res.send("Student Not found");
+                    res.send("User Not found");
                     return;
                } else {
                     res.setHeader("Set-Cookie", cookie.serialize("student_id", String(result[0].id)));
@@ -44,7 +43,7 @@ exports.login = async (req, res, next) => {
 };
 
 exports.auth = (req, res, next) => {
-     if (req.url == "/") {
+     if (req.url == "/login") {
           next();
           return;
      }
@@ -62,8 +61,7 @@ exports.auth = (req, res, next) => {
                }
                next();
           } else {
-              res.json(req.body);
-               //  res.render("/");
+               res.redirect("/login");
           }
      } catch (error) {
           res.json(error);
