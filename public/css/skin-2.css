@@ -99,7 +99,7 @@ a.active {
      background-color: #F78700;
 }
 .table.primary-table-bg-hover thead th {
-     background-color: #4d5cfd;
+     background-color: #F78700;
 }
 .table.primary-table-bg-hover tbody tr {
      background-color: #F78700;
@@ -109,7 +109,7 @@ a.active {
 }
 .table.primary-table-bg-hover tbody tr:not(:last-child) td,
 .table.primary-table-bg-hover tbody tr:not(:last-child) th {
-     border-bottom: 1px solid #4d5cfd;
+     border-bottom: 1px solid #F78700;
 }
 table.dataTable tr.selected {
      color: #F78700;
