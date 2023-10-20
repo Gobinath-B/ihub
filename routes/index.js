@@ -4,7 +4,6 @@ var cookie = require("cookie");
 const fb = require("./../config/fb").firestore();
 const express = require("express");
 const router = express.Router();
-
 router.get("/", async (req, res) => {
      var cookies = cookie.parse(req?.headers?.cookie || "");
      const id = cookies?.student_id;
