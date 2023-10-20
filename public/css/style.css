@@ -25254,6 +25254,7 @@ span#counter {
   .rtl .mx-auto {
     margin-right: auto !important;
     margin-left: auto !important; }
+    
   @media (min-width: 576px) {
     .rtl .mr-sm-0,
     .rtl .mx-sm-0 {
