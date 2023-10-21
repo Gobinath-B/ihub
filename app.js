@@ -11,10 +11,14 @@ app.set("view engine", "ejs");
 app.use(auth);
 const login = require("./routes/login");
 const index = require("./routes/index");
-const staff = require("./routes/staff")
+const staff = require("./routes/staff");
+const add_student = require("./routes/add-student");
+const hod = require("./routes/hod");
+app.use("/HOD",hod);
 app.use("/login",login);
 app.use("/",index);
 app.use("/staff",staff);
+app.use("/add-student",add_student);
 
 
 
