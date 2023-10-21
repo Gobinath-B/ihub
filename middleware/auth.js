@@ -16,7 +16,8 @@ exports.login = async (req, res, next) => {
                });
                console.log(result);
                if (result.length == 0) {
-                    res.send("User Not found");
+                    // res.send("User Not found");
+                    res.redirect("/login")
                     return;
                } else {
                     res.setHeader("Set-Cookie", cookie.serialize("student_id", String(result[0].id)));
@@ -34,7 +35,7 @@ exports.login = async (req, res, next) => {
                     return;
                } else {
                     res.setHeader("Set-Cookie", cookie.serialize("staff_id", String(result[0].id)));
-                    res.redirect("/all-students");
+                    res.redirect("/staff");
                }
           }
      } catch (err) {
