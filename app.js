@@ -11,8 +11,10 @@ app.set("view engine", "ejs");
 app.use(auth);
 const login = require("./routes/login");
 const index = require("./routes/index");
+const staff = require("./routes/staff")
 app.use("/login",login);
 app.use("/",index);
+app.use("/staff",staff);
 
 
 
