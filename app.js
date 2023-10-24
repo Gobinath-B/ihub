@@ -14,11 +14,15 @@ const index = require("./routes/index");
 const staff = require("./routes/staff");
 const add_student = require("./routes/add-student");
 const hod = require("./routes/hod");
+const letter = require("./routes/letterUpload");
+const event = require("./routes/event");
+app.use("/event-management",event);
 app.use("/HOD",hod);
 app.use("/login",login);
 app.use("/",index);
 app.use("/staff",staff);
 app.use("/add-student",add_student);
+app.use("/letterUpload",letter);
 
 
 
