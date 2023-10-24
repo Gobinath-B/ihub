@@ -132,11 +132,11 @@
                          <span class="nav-text">OD Request</span>
                     </a>
                     <ul aria-expanded="false">
-                         <%if(isStaff){%>
+                         <% if(isStaff){ %>
                               <li><a href="all-holiday"> <%if(isStaff){%> All Tasks  <%}else{%> My Tasks <%}%></a></li>
-                              <%}else{%>
-                              <li><a href="/upload"> <%if(isStaff){%> All Tasks  <%}else{%> OD Request <%}%></a></li>
-                              <%}%>
+                         <% }else{ %>
+                              <li><a href="/od-request"> OD Request </a></li>
+                         <% } %>
                          <%if(isStaff){%>
                               <li><a href="add-task">Add Task</a></li>
                               <li><a href="edit-holiday">Edit Task</a></li> 
